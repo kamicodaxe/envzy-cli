@@ -55,13 +55,6 @@ type SecretHistory struct {
 	Secret    Secret
 }
 
-// AppState represents the state of the application.
-type AppState struct {
-	gorm.Model
-	SelectedProject string
-	CurrentBranch   string
-}
-
 // StagedSecret represents a secret that is staged for commit.
 type StagedSecret struct {
 	gorm.Model

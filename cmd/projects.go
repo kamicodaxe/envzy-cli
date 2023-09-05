@@ -63,6 +63,34 @@ var projectsListCmd = &cobra.Command{
 	},
 }
 
+var projectsRemoveCmd = &cobra.Command{
+	Use:   "remove",
+	Short: "Remove a project from tthe list of projects",
+	Run: func(cmd *cobra.Command, args []string) {
+
+		if args[0] == "" {
+			log.Println("Please provide the pro")
+		}
+
+		db := app.GetDB()
+		if db == nil {
+			log.Fatalf("Failed to connect to the database.")
+		}
+
+		// var projectID uint
+		// if err:= helpers.GetProjects()
+		var projectNames []string
+		if err := db.Model(&models.Project{}).Pluck("name", &projectNames).Error; err != nil {
+			log.Fatalf("Error fetching project names: %v", err)
+		}
+
+		fmt.Println("List of projects you have access to:")
+		for _, projectName := range projectNames {
+			fmt.Println("- " + projectName)
+		}
+	},
+}
+
 func init() {
 	projectsCmd.AddCommand(projectsAddCmd)
 	projectsCmd.AddCommand(projectsListCmd)

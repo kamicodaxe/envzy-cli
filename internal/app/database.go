@@ -5,6 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/kamicodaxe/envzy-cli/internal/kvstore"
 	"github.com/kamicodaxe/envzy-cli/internal/models"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
@@ -63,4 +64,9 @@ func InitializeDatabase() (*gorm.DB, error) {
 // GetDB returns the database instance
 func GetDB() *gorm.DB {
 	return db
+}
+
+func GetKVStore() *kvstore.SqlKv {
+	store := kvstore.New(db, "appstate")
+	return store
 }

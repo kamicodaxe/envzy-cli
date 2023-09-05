@@ -49,7 +49,7 @@ func init() {
 	rootCmd.AddCommand(projectsCmd)
 	rootCmd.AddCommand(pushCmd)
 	rootCmd.AddCommand(statusCmd)
-	rootCmd.AddCommand(switchCmd)
+	rootCmd.AddCommand(selectCmd)
 	rootCmd.AddCommand(teamAddCmd)
 }
 
