@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/kamicodaxe/envzy-cli/cmd/project"
 	"github.com/spf13/cobra"
 )
 
@@ -11,16 +12,18 @@ var rootCmd = &cobra.Command{
 	Use:   "envzy",
 	Short: "A CLI tool for managing environment variables and configurations",
 	Long: `
-    Envzy is a command-line tool for managing environment variables and configuration files. It provides a simple and intuitive way to switch between projects, manage branches or configurations within projects, and track changes to environment files.
+    Envzy is a command-line tool for managing environment variables and configuration files. It provides a simple and intuitive way to manage your environment variables and configurations within projects, branches, and secrets.
 
     Envzy is designed to streamline the process of securely handling environment variables and configuration files, making it easier for developers to work on multiple projects and collaborate with team members.
 
     Key Features:
-    - Switch between projects or environments with ease.
+    - Create, list, select, update, and delete projects.
     - Manage branches or configurations within projects.
-    - Track changes to environment files using version control.
-    - Collaborate with team members by inviting them to projects.
+    - Add, list, update, and delete secrets within branches.
+    - Switch between projects or environments with ease.
     - Securely manage environment variables and configurations.
+    - Collaborate with team members by inviting them to projects.
+    - Track changes to environment files using version control.
 
     To get started, use the "envzy" command along with subcommands to perform various operations related to managing your environment variables and configurations.
 
@@ -41,16 +44,11 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.AddCommand(addCmd)
-	rootCmd.AddCommand(branchCmd)
-	rootCmd.AddCommand(commitCmd)
+	project.AddToRoot(rootCmd)
+
 	rootCmd.AddCommand(dashboardCmd)
 	rootCmd.AddCommand(loginCmd)
-	rootCmd.AddCommand(projectsCmd)
-	rootCmd.AddCommand(pushCmd)
 	rootCmd.AddCommand(statusCmd)
-	rootCmd.AddCommand(selectCmd)
-	rootCmd.AddCommand(teamAddCmd)
 }
 
 func main() {

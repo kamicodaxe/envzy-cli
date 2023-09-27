@@ -1,4 +1,4 @@
-package cmd
+package project
 
 import (
 	"fmt"
@@ -20,8 +20,6 @@ var selectCmd = &cobra.Command{
 		var selectedProject models.Project
 		var selectedProjectName string
 		var branches []models.Branch
-		var selectedBranch models.Branch
-		var selectedBranchName string
 		shouldChooseBranch := false
 
 		projects, err := helpers.GetProjects()
@@ -91,8 +89,6 @@ var selectCmd = &cobra.Command{
 			for i, branch := range branches {
 				branchNames[i] = branch.Name
 			}
-
-			survey.AskOne()
 
 			// Add your code here to handle branch selection
 		} else {

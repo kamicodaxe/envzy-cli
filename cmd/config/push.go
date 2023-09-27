@@ -1,5 +1,4 @@
-// cmd/push.go
-package cmd
+package config
 
 import (
 	"fmt"

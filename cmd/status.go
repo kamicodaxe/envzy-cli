@@ -15,8 +15,8 @@ var statusCmd = &cobra.Command{
 		// Example: Print status information
 		fmt.Println("Branch: development")
 		fmt.Println("Staged changes:")
-		fmt.Println("- env-file-1.txt")
-		fmt.Println("- env-file-2.txt")
+		fmt.Println("- env-file-1.env")
+		fmt.Println("- env-file-2.env")
 	},
 }
 
