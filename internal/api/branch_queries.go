@@ -5,13 +5,11 @@ import (
 	"github.com/kamicodaxe/envzy-cli/internal/models"
 )
 
-// GetBranchByNameAndProject retrieves a branch by its name within a specific project.
-func GetBranchByNameAndProject(branchName string, projectName string) (*models.Branch, error) {
+// GetBranchByName retrieves a branch by its name.
+func GetBranchByName(branchName string) (*models.Branch, error) {
 	db := app.GetDB()
 	var branch models.Branch
-	if err := db.Joins("JOIN projects ON branches.project_id = projects.id").
-		Where("branches.name = ? AND projects.name = ?", branchName, projectName).
-		First(&branch).Error; err != nil {
+	if err := db.Where("name = ?", branchName).First(&branch).Error; err != nil {
 		return nil, err
 	}
 	return &branch, nil
@@ -23,25 +21,11 @@ func CreateBranch(branch *models.Branch) error {
 	return db.Create(branch).Error
 }
 
-// GetBranchesByProjectName retrieves all branches within a specific project.
-func GetBranchesByProjectName(projectName string) ([]models.Branch, error) {
-	db := app.GetDB()
-	var branches []models.Branch
-	if err := db.Joins("JOIN projects ON branches.project_id = projects.id").
-		Where("projects.name = ?", projectName).
-		Find(&branches).Error; err != nil {
-		return nil, err
-	}
-	return branches, nil
-}
-
 // GetBranchesByProjectID retrieves all branches within a specific project.
 func GetBranchesByProjectID(projectID uint) ([]models.Branch, error) {
 	db := app.GetDB()
 	var branches []models.Branch
-	if err := db.Joins("JOIN projects ON branches.project_id = projects.id").
-		Where("projects.id = ?", projectID).
-		Find(&branches).Error; err != nil {
+	if err := db.Where("project_id = ?", projectID).Find(&branches).Error; err != nil {
 		return nil, err
 	}
 	return branches, nil
