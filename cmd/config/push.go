@@ -21,7 +21,5 @@ var pushCmd = &cobra.Command{
 }
 
 func init() {
-	pushCmd.Flags().StringVarP(&pushBranch, "branch", "b", "", "Branch name to push changes to")
-	pushCmd.MarkFlagRequired("branch")
 	// Add flags or additional configuration for the "push" command here, if needed
 }
