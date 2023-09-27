@@ -24,10 +24,11 @@ type Project struct {
 
 type Branch struct {
 	gorm.Model
-	ProjectID uint   `gorm:"not null"`
-	Name      string `gorm:"not null"`
-	IsDefault bool   `gorm:"default:false"` // Indicates if it's the default branch
-	Secrets   []Secret
+	Name        string `gorm:"not null"`
+	Description string
+	ProjectID   uint `gorm:"not null"`
+	IsDefault   bool `gorm:"default:false"` // Indicates if it's the default branch
+	Secrets     []Secret
 }
 
 // Secret represents a secret associated with a project.
