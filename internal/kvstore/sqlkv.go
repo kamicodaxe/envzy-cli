@@ -85,7 +85,7 @@ func (this *SqlKv) StringD(name string, defaultValue string) string {
 	return this.String(name)
 }
 
-func (this *SqlKv) SetString(name string, value string) {
+func (this *SqlKv) SetString(name string, value string) error {
 	row, err := this.rowByName(name)
 
 	if row == nil && err == nil {
@@ -94,15 +94,16 @@ func (this *SqlKv) SetString(name string, value string) {
 			Value: value,
 		}
 		if err := this.db.Create(&newRow).Error; err != nil {
-			panic(err)
+			return err
 		}
 	} else if err == nil {
 		if err := this.db.Model(&row).Where("name = ?", name).Update("Value", value).Error; err != nil {
-			panic(err)
+			return err
 		}
 	} else {
-		panic(err)
+		return err
 	}
+	return err
 }
 
 func (this *SqlKv) Int(name string) int {
@@ -126,14 +127,14 @@ func (this *SqlKv) IntD(name string, defaultValue int) int {
 	return this.Int(name)
 }
 
-func (this *SqlKv) SetInt(name string, value int) {
+func (this *SqlKv) SetInt(name string, value int) error {
 	s := strconv.Itoa(value)
-	this.SetString(name, s)
+	return this.SetString(name, s)
 }
 
-func (this *SqlKv) SetUInt(name string, value uint) {
+func (this *SqlKv) SetUInt(name string, value uint) error {
 	s := strconv.Itoa(int(value))
-	this.SetString(name, s)
+	return this.SetString(name, s)
 }
 
 func (this *SqlKv) Float(name string) float32 {
@@ -208,10 +209,11 @@ func (this *SqlKv) SetTime(name string, value time.Time) {
 	this.SetString(name, value.Format(time.RFC3339Nano))
 }
 
-func (this *SqlKv) Del(name string) {
+func (this *SqlKv) Del(name string) error {
 	if err := this.db.Where("name = ?", name).Delete(&SqlKvRow{}).Error; err != nil {
-		panic(err)
+		return err
 	}
+	return nil
 }
 
 func (this *SqlKv) Clear() {
