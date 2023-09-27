@@ -1,4 +1,4 @@
-package helpers
+package api
 
 import (
 	"github.com/kamicodaxe/envzy-cli/internal/app"

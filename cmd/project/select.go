@@ -4,9 +4,9 @@ import (
 	"fmt"
 
 	"github.com/AlecAivazis/survey/v2"
+	"github.com/kamicodaxe/envzy-cli/internal/api"
 	"github.com/kamicodaxe/envzy-cli/internal/app"
 	"github.com/kamicodaxe/envzy-cli/internal/constants"
-	"github.com/kamicodaxe/envzy-cli/internal/helpers"
 	"github.com/kamicodaxe/envzy-cli/internal/models"
 	"github.com/spf13/cobra"
 )
@@ -22,7 +22,7 @@ var selectCmd = &cobra.Command{
 		var branches []models.Branch
 		shouldChooseBranch := false
 
-		projects, err := helpers.GetProjects()
+		projects, err := api.GetProjects()
 
 		if err != nil {
 			fmt.Println("An error occured.")
@@ -80,7 +80,7 @@ var selectCmd = &cobra.Command{
 		if shouldChooseBranch {
 			// User wants to choose a branch
 			fmt.Println("You chose to select a branch.")
-			branches, err = helpers.GetBranchesByProjectID(selectedProject.ID)
+			branches, err = api.GetBranchesByProjectID(selectedProject.ID)
 			if err != nil {
 				fmt.Println("An error occured retrieving branch!")
 			}

@@ -24,7 +24,7 @@ var deleteCmd = &cobra.Command{
 		}
 
 		// var projectID uint
-		// if err:= helpers.GetProjects()
+		// if err:= api.GetProjects()
 		var projectNames []string
 		if err := db.Model(&models.Project{}).Pluck("name", &projectNames).Error; err != nil {
 			log.Fatalf("Error fetching project names: %v", err)
