@@ -1,18 +1,15 @@
 package project
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
 )
 
 var projectsCmd = &cobra.Command{
-	Use:   "projects",
-	Short: "Projects operations",
+	Use:   "project",
+	Short: "Project operations",
 	Long:  "Manage projects.",
 	Run: func(cmd *cobra.Command, args []string) {
-		// Your code for the 'project' command here
-		fmt.Println("Project operations...")
+		cmd.Run(listCmd, nil)
 	},
 }
 
@@ -22,7 +19,7 @@ func init() {
 	// Add subcommands to the 'project' command
 	projectsCmd.AddCommand(createCmd)
 	projectsCmd.AddCommand(listCmd)
-	// projectsCmd.AddCommand(selectCmd)
+	projectsCmd.AddCommand(selectCmd)
 	// projectsCmd.AddCommand(updateCmd)
 	// projectsCmd.AddCommand(deleteCmd)
 }

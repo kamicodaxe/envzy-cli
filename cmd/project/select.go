@@ -12,96 +12,97 @@ import (
 )
 
 var selectCmd = &cobra.Command{
-	Use:   "select [project name]",
+	Use:   "select",
 	Short: "Select a project",
 	Args:  cobra.MaximumNArgs(1), // Requires exactly one argument
 	Run: func(cmd *cobra.Command, args []string) {
-		// Retrieve the list of available projects from your database
-		var selectedProject models.Project
-		var selectedProjectName string
-		var branches []models.Branch
-		shouldChooseBranch := false
-
-		projects, err := api.GetProjects()
-
-		if err != nil {
-			fmt.Println("An error occured.")
-		}
-
-		if len(projects) == 0 {
-			fmt.Println("No projects available.")
-			return
-		}
-
-		// Define a slice of project names for the survey prompt
-		projectNames := make([]string, len(projects))
-		for i, project := range projects {
-			projectNames[i] = project.Name
-		}
-
-		prompt := &survey.Select{
-			Message: "Select a project:",
-			Options: projectNames,
-		}
-
-		// Prompt the user to select a project
-		survey.AskOne(prompt, &selectedProject.Name)
-
-		for _, project := range projects {
-			if project.Name == selectedProjectName {
-				selectedProject = project
-			}
-		}
-
-		// Update the application's state with the selected project
-		kvstore := app.GetKVStore()
-
-		// TODO: Handle errors
-		kvstore.SetString(constants.PROJECT_NAME, selectedProject.Name)
-		kvstore.SetUInt(constants.PROJECT_ID, selectedProject.ID)
-
-		name := kvstore.String(constants.PROJECT_NAME)
-		fmt.Printf("Project selected: %s\n", name)
-
-		// Create a question to ask the user
-		branchQuestion := &survey.Confirm{
-			Message: "Do you want to choose a branch now?",
-			Default: false, // You can set the default answer here
-		}
-
-		// Ask the user the question
-		err = survey.AskOne(branchQuestion, &shouldChooseBranch)
-		if err != nil {
-			fmt.Println("Error asking the question:", err)
-			return
-		}
-
-		// Check the user's answer
-		if shouldChooseBranch {
-			// User wants to choose a branch
-			fmt.Println("You chose to select a branch.")
-			branches, err = api.GetBranchesByProjectID(selectedProject.ID)
-			if err != nil {
-				fmt.Println("An error occured retrieving branch!")
-			}
-
-			branchNames := make([]string, len(branches))
-			for i, branch := range branches {
-				branchNames[i] = branch.Name
-			}
-
-			// Add your code here to handle branch selection
-		} else {
-			// User doesn't want to choose a branch
-			fmt.Println("You chose not to select a branch.")
-			// Add your code here for the other scenario
-		}
-
+		SelectProject()
 	},
 }
 
-func SelectBranch() {
+func SelectProject() {
+	// Retrieve the list of available projects from your database
+	var selectedProject models.Project
+	var selectedProjectName string
+	var branches []models.Branch
+	shouldChooseBranch := false
 
+	projects, err := api.GetProjects()
+
+	if err != nil {
+		fmt.Println("An error occured.")
+	}
+
+	if len(projects) == 0 {
+		fmt.Println("No projects available.")
+		return
+	}
+
+	// Define a slice of project names for the survey prompt
+	projectNames := make([]string, len(projects))
+	for i, project := range projects {
+		projectNames[i] = project.Name
+	}
+
+	prompt := &survey.Select{
+		Message: "Select a project:",
+		Options: projectNames,
+	}
+
+	// Prompt the user to select a project
+	survey.AskOne(prompt, &selectedProject.Name)
+
+	for _, project := range projects {
+		if project.Name == selectedProjectName {
+			selectedProject = project
+		}
+	}
+
+	// Update the application's state with the selected project
+	kvstore := app.GetKVStore()
+
+	// TODO: Handle errors
+	kvstore.SetString(constants.PROJECT_NAME, selectedProject.Name)
+	kvstore.SetUInt(constants.PROJECT_ID, selectedProject.ID)
+
+	name := kvstore.String(constants.PROJECT_NAME)
+	fmt.Printf("Project selected: %s\n", name)
+
+	// Create a question to ask the user
+	branchQuestion := &survey.Confirm{
+		Message: "Do you want to choose a branch now?",
+		Default: false, // You can set the default answer here
+	}
+
+	// Ask the user the question
+	err = survey.AskOne(branchQuestion, &shouldChooseBranch)
+	if err != nil {
+		fmt.Println("Error asking the question:", err)
+		return
+	}
+
+	// Check the user's answer
+	if shouldChooseBranch {
+		// User wants to choose a branch
+		fmt.Println("You chose to select a branch.")
+		branches, err = api.GetBranchesByProjectID(selectedProject.ID)
+		if err != nil {
+			fmt.Println("An error occured retrieving branch!")
+		}
+
+		branchNames := make([]string, len(branches))
+		for i, branch := range branches {
+			branchNames[i] = branch.Name
+		}
+
+		// Add your code here to handle branch selection
+	} else {
+		// User doesn't want to choose a branch
+		// Add your code here for the other scenario
+		kvstore.Del(constants.CURRENT_BRANCH_ID)
+		kvstore.Del(constants.CURRENT_BRANCH_NAME)
+		fmt.Println("You chose not to select a branch.")
+	}
 }
 
 func init() {

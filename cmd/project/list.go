@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/kamicodaxe/envzy-cli/internal/api"
 	"github.com/kamicodaxe/envzy-cli/internal/app"
 	"github.com/kamicodaxe/envzy-cli/internal/models"
 	"github.com/spf13/cobra"
@@ -25,7 +26,12 @@ var listCmd = &cobra.Command{
 		}
 
 		fmt.Println("List of projects you have access to:")
+		selectedProject := api.GetCurrentProject()
 		for _, projectName := range projectNames {
+			if selectedProject != nil && (projectName == selectedProject.Name) {
+				fmt.Println("* " + projectName)
+				continue
+			}
 			fmt.Println("- " + projectName)
 		}
 	},
