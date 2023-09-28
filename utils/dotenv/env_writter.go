@@ -1,13 +1,11 @@
-// utils/env_writer.go
-
-package utils
+package dotenv
 
 import (
 	"fmt"
 	"os"
 )
 
-func writeToEnvFile(filename string, key, value string) error {
+func WriteToEnvFile(filename string, key, value string, comment string) error {
 	// Open the .env file in append mode
 	file, err := os.OpenFile(filename, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
 	if err != nil {
@@ -16,7 +14,7 @@ func writeToEnvFile(filename string, key, value string) error {
 	defer file.Close()
 
 	// Write the key-value pair to the .env file
-	_, err = fmt.Fprintf(file, "%s=%s\n", key, value)
+	_, err = fmt.Fprintf(file, "%s%s=%s\n", comment, key, value)
 	if err != nil {
 		return err
 	}
