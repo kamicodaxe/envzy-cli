@@ -13,8 +13,6 @@ var configCmd = &cobra.Command{
 }
 
 func init() {
-	configCmd.AddCommand(addCmd)
-	configCmd.AddCommand(commitCmd)
 	configCmd.AddCommand(pushCmd)
 	configCmd.AddCommand(pullCmd)
 }
