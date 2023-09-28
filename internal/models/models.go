@@ -38,6 +38,7 @@ type Secret struct {
 	BranchID    uint   `gorm:"not null"`
 	Name        string `gorm:"not null"`
 	Value       string `gorm:"not null"`
+	Comment     string
 	Description string
 	Branch      Branch
 	History     []SecretHistory
