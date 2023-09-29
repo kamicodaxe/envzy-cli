@@ -23,25 +23,26 @@ Envzy CLI supports several ways to interact with your projects, branches, and se
 
 Here are the commands available in the Envzy CLI along with their short forms (aliases):
 
-| Command                                                  | Short Form | Description                                                                            |
-| -------------------------------------------------------- | ---------- | -------------------------------------------------------------------------------------- |
-| `envzy project create [projectName] [-d\|--description]` | `pc`       | Creates a new project with an optional description.                                    |
-| `envzy project list`                                     | `pl`       | Lists all available projects.                                                          |
-| `envzy project select [projectName]`                     | `ps`       | Selects a project as the active project.                                               |
-| `envzy project update [projectName] [-d\|--description]` | `pu`       | Updates the details of an existing project.                                            |
-| `envzy project delete [projectName]`                     | `pd`       | Deletes an existing project.                                                           |
-| `envzy branch list`                                      | `bl`       | Lists all branches within the active project.                                          |
-| `envzy branch create [branchName] [-d\|--description]`   | `bc`       | Creates a new branch within the active project with an optional description.           |
-| `envzy branch select [branchName]`                       | `bs`       | Selects a branch within the active project.                                            |
-| `envzy branch update [branchName] [-d\|--description]`   | `bu`       | Updates the details of an existing branch.                                             |
-| `envzy branch delete [branchName]`                       | `bd`       | Deletes an existing branch.                                                            |
-| `envzy secret list [-b\|--branch]`                       | `sl`       | Lists all secrets within the active branch or a specified branch.                      |
-| `envzy secret create [secretName] [value]`               | `sc`       | Adds a new secret to the active branch.                                                |
-| `envzy secret update [secretName] [newValue]`            | `su`       | Updates the value of an existing secret.                                               |
-| `envzy secret delete [secretName]`                       | `sd`       | Deletes an existing secret.                                                            |
-| `envzy help [command]`                                   | `h`        | Provides help and usage information for a specific command.                            |
-| `envzy version`                                          | `v`        | Displays the version information of the Envzy CLI tool.                                |
-| `envzy config [--set-api-key] [--user-preferences]`      | `c`        | Manages configuration settings for the CLI tool, such as API keys or user preferences. |
+| Command                                                  | Short Form | Description                                                                             |
+| -------------------------------------------------------- | ---------- | --------------------------------------------------------------------------------------- |
+| `envzy project create [projectName] [-d\|--description]` | `pc`       | Creates a new project with an optional description.                                     |
+| `envzy project list`                                     | `pl`       | Lists all available projects.                                                           |
+| `envzy project select [projectName]`                     | `ps`       | Selects a project as the active project.                                                |
+| `envzy project update [projectName] [-d\|--description]` | `pu`       | Updates the details of an existing project.                                             |
+| `envzy project delete [projectName]`                     | `pd`       | Deletes an existing project.                                                            |
+| `envzy branch list`                                      | `bl`       | Lists all branches within the active project.                                           |
+| `envzy branch create [branchName] [-d\|--description]`   | `bc`       | Creates a new branch within the active project with an optional description.            |
+| `envzy branch select [branchName]`                       | `bs`       | Selects a branch within the active project.                                             |
+| `envzy branch update [branchName] [-d\|--description]`   | `bu`       | Updates the details of an existing branch.                                              |
+| `envzy branch delete [branchName]`                       | `bd`       | Deletes an existing branch.                                                             |
+| `envzy secret list [-b\|--branch]`                       | `sl`       | Lists all secrets within the active branch or a specified branch.                       |
+| `envzy secret create [secretName] [value]`               | `sc`       | Adds a new secret to the active branch.                                                 |
+| `envzy secret update [secretName] [newValue]`            | `su`       | Updates the value of an existing secret.                                                |
+| `envzy secret delete [secretName]`                       | `sd`       | Deletes an existing secret.                                                             |
+| `envzy help [command]`                                   | `h`        | Provides help and usage information for a specific command.                             |
+| `envzy version`                                          | `v`        | Displays the version information of the Envzy CLI tool.                                 |
+| `envzy config push path/to/dotenv`                       |            | Writes all env variables in path/to/dotenv to databse selected project and branch       |
+| `envzy config pull path/to/dotenv`                       |            | Writes all env variables from selected project and branch in database to path/to/dotenv |
 
 ## Examples
 
@@ -163,33 +164,23 @@ Here are the commands available in the Envzy CLI along with their short forms (a
 
     - Deletes the "mysecret" secret.
 
-**Add a New Configuration File:**
+**Configuration File:**
 
-15. Staging a new configuration file for future commits:
+15. Pushing local configuration changes to cli:
 
     ```shell
-    envzy config add .env.production
+    envzy config push path/to/dotenv/file
     ```
 
-**Push Configuration Files:**
-
-16. Pushing local configuration changes to a remote source:
+16. Pulling configuration files from cli and updating your local environment:
 
     ```shell
-    envzy config push
-    ```
-
-**Pull Configuration Files:**
-
-17. Pulling configuration files from a remote source and updating your local environment:
-
-    ```shell
-    envzy config pull
+    envzy config pull path/to/save/dotenv/file
     ```
 
 **Global Commands:**
 
-18. Display version information of the Envzy CLI tool:
+17. Display version information of the Envzy CLI tool:
 
     ```shell
     envzy version
@@ -209,6 +200,6 @@ This software is free to use, modify, and distribute, as long as you comply with
 
 The GPL v3.0 ensures that any modifications or improvements made to Envzy will also be open source and available to the community. If you modify Envzy and make it available to others, you must also provide the corresponding source code.
 
-Please read the full text of the AGPL 3.0 license to understand your rights and obligations.
+Please read the full text of the GPL 3.0 license to understand your rights and obligations.
 
 For the full license text, visit: [GNU GPL 3.0](https://www.gnu.org/licenses/gpl-3.0.md)
