@@ -66,10 +66,7 @@ var pullCmd = &cobra.Command{
 			log.Fatalln("Error retrieving secrets.", err)
 			return
 		}
-		// For each secret, call WriteToEnvFile to write them to the env file
-		for _, secret := range secrets {
-			dotenv.WriteToEnvFile(envFile, secret.Name, secret.Value, secret.Comment)
-		}
+		dotenv.WriteToEnvFile(envFile, secrets)
 
 	},
 }
