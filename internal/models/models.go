@@ -41,6 +41,7 @@ type Secret struct {
 	Comment     string
 	Description string
 	Branch      Branch
+	Project     Project
 	History     []SecretHistory
 	CreatedAt   time.Time
 	UpdatedAt   time.Time
