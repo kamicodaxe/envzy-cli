@@ -20,8 +20,8 @@ func init() {
 	projectsCmd.AddCommand(createCmd)
 	projectsCmd.AddCommand(listCmd)
 	projectsCmd.AddCommand(selectCmd)
+	projectsCmd.AddCommand(deleteCmd)
 	// projectsCmd.AddCommand(updateCmd)
-	// projectsCmd.AddCommand(deleteCmd)
 }
 
 func AddToRoot(rootCmd *cobra.Command) {
