@@ -1,7 +1,6 @@
 package app
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 
@@ -56,7 +55,7 @@ func InitializeDatabase() (*gorm.DB, error) {
 		&models.SecretHistory{},
 	)
 
-	fmt.Println("Database path:", dbPath)
+	// fmt.Println("Database path:", dbPath)
 
 	return db, nil
 }
