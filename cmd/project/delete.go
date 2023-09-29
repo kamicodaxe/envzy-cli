@@ -11,8 +11,9 @@ import (
 )
 
 var deleteCmd = &cobra.Command{
-	Use:   "delete",
-	Short: "Deletes a project and its associated secrets",
+	Use:     "delete",
+	Aliases: []string{"d"},
+	Short:   "Deletes a project and its associated secrets",
 	Run: func(cmd *cobra.Command, args []string) {
 		// Retrieve the list of available projects from your database
 		projects, err := api.GetProjects()

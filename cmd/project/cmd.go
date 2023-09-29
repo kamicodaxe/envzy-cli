@@ -5,9 +5,10 @@ import (
 )
 
 var projectsCmd = &cobra.Command{
-	Use:   "project",
-	Short: "Project operations",
-	Long:  "Manage projects.",
+	Use:     "project",
+	Aliases: []string{"p"},
+	Short:   "Project operations",
+	Long:    "Manage projects.",
 	Run: func(cmd *cobra.Command, args []string) {
 		cmd.Run(listCmd, nil)
 	},

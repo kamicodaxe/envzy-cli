@@ -10,10 +10,11 @@ import (
 )
 
 var createCmd = &cobra.Command{
-	Use:   "create [projectName]",
-	Short: "Create a new project",
-	Long:  "Create a new project with the specified name.",
-	Args:  cobra.ExactArgs(1),
+	Use:     "create [projectName]",
+	Aliases: []string{"c"},
+	Short:   "Create a new project",
+	Long:    "Create a new project with the specified name.",
+	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		db := app.GetDB()
 		if db == nil {

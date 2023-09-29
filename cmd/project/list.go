@@ -11,9 +11,10 @@ import (
 )
 
 var listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List all projects",
-	Long:  "List the projects you have access to, providing an overview of available projects",
+	Use:     "list",
+	Aliases: []string{"l"},
+	Short:   "List all projects",
+	Long:    "List the projects you have access to, providing an overview of available projects",
 	Run: func(cmd *cobra.Command, args []string) {
 		db := app.GetDB()
 		if db == nil {

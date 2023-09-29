@@ -12,9 +12,10 @@ import (
 )
 
 var selectCmd = &cobra.Command{
-	Use:   "select",
-	Short: "Select a project",
-	Args:  cobra.MaximumNArgs(1), // Requires exactly one argument
+	Use:     "select",
+	Aliases: []string{"s"},
+	Short:   "Select a project",
+	Args:    cobra.MaximumNArgs(1), // Requires exactly one argument
 	Run: func(cmd *cobra.Command, args []string) {
 		SelectProject()
 	},
