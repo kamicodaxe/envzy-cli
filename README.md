@@ -4,16 +4,36 @@ Envzy CLI is a powerful command-line tool for managing your environment variable
 
 ## Installation (LINUX)
 
-To use the Envzy CLI, you'll need to install it on your system. You can download the latest release for your platform from the [Envzy GitHub releases page](https://github.com/kamicodaxe/envzy-cli/releases).
+To use the Envzy CLI, you can build it from the source code. Follow these steps to clone the repository, build the CLI, and install it on your system:
 
-After downloading, make the binary executable and place it in a directory included in your system's PATH.
+1. **Clone the Envzy Repository:**
+
+```sh
+git clone https://github.com/kamicodaxe/envzy-cli.git
+cd envzy-cli
+```
+
+2. **Build the Envzy CLI:**
+
+```sh
+go build -o envzy
+```
+
+This command compiles the source code and generates an executable named `envzy`.
+
+3. **Make the Binary Executable:**
 
 ```sh
 chmod +x envzy
+```
+
+4. **Move the Binary to a Directory in Your PATH:**
+
+```sh
 sudo mv envzy /usr/local/bin
 ```
 
-Now, you can use the `envzy` command from your terminal.
+Now, you can use the `envzy` command from your terminal. Make sure to have Go installed on your system to build the CLI. You can download and install Go from the [official Go website](https://golang.org/dl/)
 
 ## Usage
 
@@ -191,6 +211,12 @@ Here are the commands available in the Envzy CLI along with their short forms (a
 ## Contributing
 
 We welcome contributions from the community! If you'd like to contribute to Envzy, please follow our [contribution guidelines](CONTRIBUTING.md).
+
+## Contributors
+
+- **Kami Loic**
+  - LinkedIn: [LinkedIn Profile](https://www.linkedin.com/in/loic-kami)
+
 
 ## License
 
