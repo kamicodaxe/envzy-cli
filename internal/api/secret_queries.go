@@ -54,3 +54,18 @@ func GetSecretsByProjectAndBranch(projectID uint, branchID uint) ([]models.Secre
 
 	return secrets, nil
 }
+
+// DeleteSecretByName deletes a secret by its name for the active project and branch.
+func DeleteSecretByName(secretName string, projectID uint, branchID uint) error {
+	db := app.GetDB()
+	return db.Where("name = ? AND project_id = ? AND branch_id = ?", secretName, projectID, branchID).Delete(&models.Secret{}).Error
+}
+
+// UpdateSecretByName updates the value of a secret by its name for the active project and branch.
+func UpdateSecretByName(secretName string, newSecretValue string, projectID uint, branchID uint) error {
+	db := app.GetDB()
+	return db.Model(&models.Secret{}).
+		Where("name = ? AND project_id = ? AND branch_id = ?", secretName, projectID, branchID).
+		Update("value", newSecretValue).
+		Error
+}
