@@ -23,26 +23,26 @@ Envzy CLI supports several ways to interact with your projects, branches, and se
 
 Here are the commands available in the Envzy CLI along with their short forms (aliases):
 
-| Command                                                  | Short Form | Description                                                                             |
-| -------------------------------------------------------- | ---------- | --------------------------------------------------------------------------------------- |
-| `envzy project create [projectName] [-d\|--description]` | `pc`       | Creates a new project with an optional description.                                     |
-| `envzy project list`                                     | `pl`       | Lists all available projects.                                                           |
-| `envzy project select [projectName]`                     | `ps`       | Selects a project as the active project.                                                |
-| `envzy project update [projectName] [-d\|--description]` | `pu`       | Updates the details of an existing project.                                             |
-| `envzy project delete [projectName]`                     | `pd`       | Deletes an existing project.                                                            |
-| `envzy branch list`                                      | `bl`       | Lists all branches within the active project.                                           |
-| `envzy branch create [branchName] [-d\|--description]`   | `bc`       | Creates a new branch within the active project with an optional description.            |
-| `envzy branch select [branchName]`                       | `bs`       | Selects a branch within the active project.                                             |
-| `envzy branch update [branchName] [-d\|--description]`   | `bu`       | Updates the details of an existing branch.                                              |
-| `envzy branch delete [branchName]`                       | `bd`       | Deletes an existing branch.                                                             |
-| `envzy secret list [-b\|--branch]`                       | `sl`       | Lists all secrets within the active branch or a specified branch.                       |
-| `envzy secret create [secretName] [value]`               | `sc`       | Adds a new secret to the active branch.                                                 |
-| `envzy secret update [secretName] [newValue]`            | `su`       | Updates the value of an existing secret.                                                |
-| `envzy secret delete [secretName]`                       | `sd`       | Deletes an existing secret.                                                             |
-| `envzy help [command]`                                   | `h`        | Provides help and usage information for a specific command.                             |
-| `envzy version`                                          | `v`        | Displays the version information of the Envzy CLI tool.                                 |
-| `envzy config push path/to/dotenv`                       |            | Writes all env variables in path/to/dotenv to databse selected project and branch       |
-| `envzy config pull path/to/dotenv`                       |            | Writes all env variables from selected project and branch in database to path/to/dotenv |
+| Command                                                  | Short Form  | Description                                                                             |
+| -------------------------------------------------------- | ----------- | --------------------------------------------------------------------------------------- |
+| `envzy project create [projectName] [-d\|--description]` | `envzy p c` | Creates a new project with an optional description.                                     |
+| `envzy project list`                                     | `envzy p l` | Lists all available projects.                                                           |
+| `envzy project select [projectName]`                     | `envzy p s` | Selects a project as the active project.                                                |
+| `envzy project update [projectName] [-d\|--description]` | `envzy p u` | Updates the details of an existing project.                                             |
+| `envzy project delete [projectName]`                     | `envzy p d` | Deletes an existing project.                                                            |
+| `envzy branch list`                                      | `envzy b l` | Lists all branches within the active project.                                           |
+| `envzy branch create [branchName] [-d\|--description]`   | `envzy b c` | Creates a new branch within the active project with an optional description.            |
+| `envzy branch select [branchName]`                       | `envzy b s` | Selects a branch within the active project.                                             |
+| `envzy branch update [branchName] [-d\|--description]`   | `envzy b u` | Updates the details of an existing branch.                                              |
+| `envzy branch delete [branchName]`                       | `envzy b d` | Deletes an existing branch.                                                             |
+| `envzy secret list [-b\|--branch]`                       | `envzy s l` | Lists all secrets within the active branch or a specified branch.                       |
+| `envzy secret create [secretName] [value]`               | `envzy s c` | Adds a new secret to the active branch.                                                 |
+| `envzy secret update [secretName] [newValue]`            | `envzy s u` | Updates the value of an existing secret.                                                |
+| `envzy secret delete [secretName]`                       | `envzy s d` | Deletes an existing secret.                                                             |
+| `envzy help [command]`                                   | `envzy h`   | Provides help and usage information for a specific command.                             |
+| `envzy version`                                          | `envzy v`   | Displays the version information of the Envzy CLI tool.                                 |
+| `envzy config push path/to/dotenv`                       |             | Writes all env variables in path/to/dotenv to databse selected project and branch       |
+| `envzy config pull path/to/dotenv`                       |             | Writes all env variables from selected project and branch in database to path/to/dotenv |
 
 ## Examples
 
