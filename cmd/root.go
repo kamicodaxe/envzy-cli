@@ -7,6 +7,7 @@ import (
 	"github.com/kamicodaxe/envzy-cli/cmd/branch"
 	"github.com/kamicodaxe/envzy-cli/cmd/config"
 	"github.com/kamicodaxe/envzy-cli/cmd/project"
+	"github.com/kamicodaxe/envzy-cli/cmd/secret"
 	"github.com/spf13/cobra"
 )
 
@@ -49,6 +50,7 @@ func init() {
 	project.AddToRoot(rootCmd)
 	branch.AddToRoot(rootCmd)
 	config.AddToRoot(rootCmd)
+	secret.AddToRoot(rootCmd)
 
 	rootCmd.AddCommand(dashboardCmd)
 	rootCmd.AddCommand(loginCmd)
